@@ -1,4 +1,6 @@
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -130,6 +132,17 @@ public class Main {
            RandomAccessFile = Best for read/write specific portions of a large file
            FileInputStream = Best for binary files (e.g., images, audio files)
          */
+
+        /* How to work with DATES & TIMES using java
+           (LocalDate, LocalTime, LocalDateTime, UTC timestamp)
+          ex: LocalDate date = LocalDate.now();
+              Instant instant = Instant.now() //UTC
+         */
+
+        LocalDateTime date = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy, h:mm");
+        String newDate = date.format(formatter);
+        System.out.println(newDate);
 
         try (FileWriter writer = new FileWriter("test.txt")) {
             writer.write("I like this");
