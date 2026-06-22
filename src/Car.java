@@ -8,6 +8,10 @@ public class Car implements Prey{
         this.model = model;
     }
 
+    void sound(){
+        System.out.println("voom voom");
+    }
+
     static void drive(String make) {
         System.out.println("You drive" + make);
         count++;

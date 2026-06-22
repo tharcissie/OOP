@@ -138,6 +138,21 @@ public class Main {
           ex: LocalDate date = LocalDate.now();
               Instant instant = Instant.now() //UTC
          */
+        /* ANONYMOUS CLASS = A class with no name. can not be reused. add custom behavior
+                             without having to create a new class.
+                             Often used for one time uses (TimerTask, Runnable, callbacks)
+        */
+
+
+        //anonymous class
+        Car car = new Car("Kigali", "Bike"){
+            @Override
+            void sound(){
+                System.out.println("boom boom");
+            }
+        };
+
+        car.sound();
 
         LocalDateTime date = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy, h:mm");
