@@ -3,6 +3,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
@@ -132,33 +134,6 @@ public class Main {
            RandomAccessFile = Best for read/write specific portions of a large file
            FileInputStream = Best for binary files (e.g., images, audio files)
          */
-
-        /* How to work with DATES & TIMES using java
-           (LocalDate, LocalTime, LocalDateTime, UTC timestamp)
-          ex: LocalDate date = LocalDate.now();
-              Instant instant = Instant.now() //UTC
-         */
-        /* ANONYMOUS CLASS = A class with no name. can not be reused. add custom behavior
-                             without having to create a new class.
-                             Often used for one time uses (TimerTask, Runnable, callbacks)
-        */
-
-
-        //anonymous class
-        Car car = new Car("Kigali", "Bike"){
-            @Override
-            void sound(){
-                System.out.println("boom boom");
-            }
-        };
-
-        car.sound();
-
-        LocalDateTime date = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy, h:mm");
-        String newDate = date.format(formatter);
-        System.out.println(newDate);
-
         try (FileWriter writer = new FileWriter("test.txt")) {
             writer.write("I like this");
 
@@ -179,6 +154,62 @@ public class Main {
         } catch (IOException e) {
             System.out.println("Something went wrong");
         }
+
+
+        /* How to work with DATES & TIMES using java
+           (LocalDate, LocalTime, LocalDateTime, UTC timestamp)
+          ex: LocalDate date = LocalDate.now();
+              Instant instant = Instant.now() //UTC
+         */
+        LocalDateTime date = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy, h:mm");
+        String newDate = date.format(formatter);
+        System.out.println(newDate);
+
+
+        /* ANONYMOUS CLASS = A class with no name. can not be reused. add custom behavior
+                             without having to create a new class.
+                             Often used for one time uses (TimerTask, Runnable, callbacks)
+        */
+
+
+        //anonymous class
+        Car car = new Car("Kigali", "Bike"){
+            @Override
+            void sound(){
+                System.out.println("boom boom");
+            }
+        };
+        car.sound();
+
+        /* TIMER = Class that schedules tasks at a specific times or periodically
+                   useful for sending notifications, scheduled updates, repetitive actions.
+
+           TimerTask = Represents the task that will be executed by the timer
+                       You will extend the TimerTask class to define your task
+                       Create a subclass of TimerTask and @Override run()
+        */
+
+        Timer time = new Timer();
+        TimerTask task = new TimerTask() {
+            int count = 3;
+            @Override
+            public void run() {
+                System.out.println("Hello");
+                count--;
+                if(count <= 0){
+                    System.out.println("Task Completed");
+                }
+
+            }
+        };
+        time.schedule(task, 0, 2000);
+
+
+
+
+
+
 
 
     }
